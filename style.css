@@ -20,11 +20,11 @@ main {
 background: white;
 overflow: auto;
 }
-main .left{
+main .left, footer .contact{
 float: left;
 width: 570px;
 }
-main .right{
+main .right, footer .sitemap{
 float: right;
 width: 285px;	
 }
