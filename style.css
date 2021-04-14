@@ -1,12 +1,21 @@
 body {
 background: #f9e933;
+font-family: 'Droid sans';
+}
+h1, h2, h3, h4 {
+	font-family: Ubuntu;
 }
 header, main, footer {
 min-width: 855px;
 }
+header .container, main .container, footer .container { 
+	max-width: 855px;
+	margin: auto;
+}
 header {
 background: white;
 overflow: auto;
+padding: 10px;
 }
 header h1{
 float: left;
