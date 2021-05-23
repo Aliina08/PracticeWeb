@@ -1,3 +1,34 @@
+var organizeByTags = function (toDoObjects) {
+	// создание пустого массива для тегов
+	var tags = [];
+	// перебираем все задачи toDos
+	toDoObjects.forEach(function (toDo) {
+	// перебираем все теги для каждой задачи
+		toDo.tags.forEach(function (tag) {
+		// убеждаемся, что этого тега еще нет в массиве
+			if (tags.indexOf(tag) === -1) {
+				tags.push(tag);
+			}
+			});
+	});
+	console.log(tags);
+	var tagObjects = tags.map(function (tag) {
+		// здесь мы находим все задачи,
+		// содержащие этот тег
+		var toDosWithTag = [];
+		toDoObjects.forEach(function (toDo) {
+			// проверка, что результат indexOf is *не* равен -1
+			if (toDo.tags.indexOf(tag) !== -1) {
+				toDosWithTag.push(toDo.description);
+			}
+		});
+	// мы связываем каждый тег с объектом, которыйсодержит название тега и массив
+		return { "name": tag, "toDos": toDosWithTag };
+	});
+	console.log(tagObjects);
+	return tagObjects;
+};
+
 var main = function (toDoObjects) {
 "use strict";
 var toDos = toDoObjects.map(function (toDo) {
@@ -32,11 +63,7 @@ $(".tabs a span").toArray().forEach(function (element) {
 	else if ($element.parent().is(":nth-child(3)")) {
 		// ЭТО КОД ДЛЯ ВКЛАДКИ ТЕГИ
 		console.log("Щелчок на вкладке Теги");
-		var organizedByTag = [
-			{ "name": "покупки","toDos": ["Купить продукты "]},
-			{ "name": "рутина","toDos": ["Купить продукты", "Вывести Грейси на прогулку в парк "]},
-			/* и т. д. */
-		];
+		var organizedByTag = organizeByTags(toDoObjects);
 		organizedByTag.forEach(function (tag) {
 			var $tagName = $("<h3>").text(tag.name),
 			$content = $("<ul>");
